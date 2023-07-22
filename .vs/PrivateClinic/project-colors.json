@@ -1,0 +1,171 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "7f1d53a1-2096-4751-b6f3-7056adee6920": {
+      "ProjectGuid": "7f1d53a1-2096-4751-b6f3-7056adee6920",
+      "DisplayName": "PrivateClinic.Web",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "41ee3c2e-6ec8-4500-8b8e-1aa740bb62d0": {
+      "ProjectGuid": "41ee3c2e-6ec8-4500-8b8e-1aa740bb62d0",
+      "DisplayName": "PrivateClinic.Persistence",
+      "ColorIndex": 1
+    },
+    "7f57630c-8dfa-4074-97eb-c780f2fcc6f9": {
+      "ProjectGuid": "7f57630c-8dfa-4074-97eb-c780f2fcc6f9",
+      "DisplayName": "PrivateClinic.WebApi",
+      "ColorIndex": 2
+    },
+    "a144f289-af4f-43a4-868e-51f96faa9c89": {
+      "ProjectGuid": "a144f289-af4f-43a4-868e-51f96faa9c89",
+      "DisplayName": "PrivateClinic.WebApi",
+      "ColorIndex": 3
+    },
+    "96d08d02-efc5-4710-90bd-c4424862379f": {
+      "ProjectGuid": "96d08d02-efc5-4710-90bd-c4424862379f",
+      "DisplayName": "PrivateClinic.DTO",
+      "ColorIndex": 4
+    },
+    "c3a465f0-56d4-4aa5-aa20-0c44b45f5312": {
+      "ProjectGuid": "c3a465f0-56d4-4aa5-aa20-0c44b45f5312",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 5
+    },
+    "6016f7fd-9f4f-4a34-82fe-b9afeb1258a2": {
+      "ProjectGuid": "6016f7fd-9f4f-4a34-82fe-b9afeb1258a2",
+      "DisplayName": "PrivateClinic.DTO",
+      "ColorIndex": 6
+    },
+    "2fcdf42f-cd95-433b-b634-7454a19d3c7e": {
+      "ProjectGuid": "2fcdf42f-cd95-433b-b634-7454a19d3c7e",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 7
+    },
+    "2e0c56d8-08e8-43c2-9e99-d69fa048a776": {
+      "ProjectGuid": "2e0c56d8-08e8-43c2-9e99-d69fa048a776",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 8
+    },
+    "29764549-5762-40f1-9552-754b2d9128fe": {
+      "ProjectGuid": "29764549-5762-40f1-9552-754b2d9128fe",
+      "DisplayName": "PrivateClinic.WebApi",
+      "ColorIndex": 9
+    },
+    "7f2120c5-0475-4595-807d-f8734eaf7a58": {
+      "ProjectGuid": "7f2120c5-0475-4595-807d-f8734eaf7a58",
+      "DisplayName": "PrivateClinic.DTO",
+      "ColorIndex": 10
+    },
+    "f70cf4b1-722c-4c77-9b12-c7fcaa25fff1": {
+      "ProjectGuid": "f70cf4b1-722c-4c77-9b12-c7fcaa25fff1",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 11
+    },
+    "8a93a46f-a829-414d-8a3c-d22404ffbea6": {
+      "ProjectGuid": "8a93a46f-a829-414d-8a3c-d22404ffbea6",
+      "DisplayName": "PrivateClinic.WebApi",
+      "ColorIndex": 12
+    },
+    "06be0f9b-17df-4220-b830-1129be333aa9": {
+      "ProjectGuid": "06be0f9b-17df-4220-b830-1129be333aa9",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 13
+    },
+    "19922482-bf76-4ab2-8a65-d6c1ce0498b1": {
+      "ProjectGuid": "19922482-bf76-4ab2-8a65-d6c1ce0498b1",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 14
+    },
+    "bce3e61a-f07c-4bb2-9988-491cd5212d07": {
+      "ProjectGuid": "bce3e61a-f07c-4bb2-9988-491cd5212d07",
+      "DisplayName": "PrivateClinic.Web",
+      "ColorIndex": 15
+    },
+    "de5c394d-8b44-489a-88f6-484f018ced71": {
+      "ProjectGuid": "de5c394d-8b44-489a-88f6-484f018ced71",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 0
+    },
+    "aa495ace-8ed4-4fc0-9c45-a9884461b4ba": {
+      "ProjectGuid": "aa495ace-8ed4-4fc0-9c45-a9884461b4ba",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 1
+    },
+    "d8185427-723c-442f-bca6-2e2edcfafa73": {
+      "ProjectGuid": "d8185427-723c-442f-bca6-2e2edcfafa73",
+      "DisplayName": "PrivateClinic.WebApi.Tests",
+      "ColorIndex": 2
+    },
+    "f273d302-c75c-4faf-89bd-a635b3f2a5c9": {
+      "ProjectGuid": "f273d302-c75c-4faf-89bd-a635b3f2a5c9",
+      "DisplayName": "PrivateClinic.WebApi",
+      "ColorIndex": 3
+    },
+    "3639202b-46f4-4214-8a60-f4e839c8d339": {
+      "ProjectGuid": "3639202b-46f4-4214-8a60-f4e839c8d339",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 4
+    },
+    "cfd8e071-2a9d-4efd-bda4-8e6d10e06e99": {
+      "ProjectGuid": "cfd8e071-2a9d-4efd-bda4-8e6d10e06e99",
+      "DisplayName": "PrivateClinic.WebApi",
+      "ColorIndex": 5
+    },
+    "f5b749b0-5914-42d0-b6e1-43266525bbcd": {
+      "ProjectGuid": "f5b749b0-5914-42d0-b6e1-43266525bbcd",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 6
+    },
+    "3d58b92f-dcae-4638-a4d2-ee92e4cb99cb": {
+      "ProjectGuid": "3d58b92f-dcae-4638-a4d2-ee92e4cb99cb",
+      "DisplayName": "PrivateClinic.WebApi.Tests",
+      "ColorIndex": 7
+    },
+    "4e7960d9-9c72-43fe-b7bf-8ec97e24a19f": {
+      "ProjectGuid": "4e7960d9-9c72-43fe-b7bf-8ec97e24a19f",
+      "DisplayName": "PrivateClinic.WebApi",
+      "ColorIndex": 8
+    },
+    "584c0153-fe6d-424f-af49-002101a08c4f": {
+      "ProjectGuid": "584c0153-fe6d-424f-af49-002101a08c4f",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 9
+    },
+    "966245c4-fb5f-4ea4-ad3b-d2ea21bdc832": {
+      "ProjectGuid": "966245c4-fb5f-4ea4-ad3b-d2ea21bdc832",
+      "DisplayName": "PrivateClinic.WebApi.Tests",
+      "ColorIndex": 10
+    },
+    "4bede18e-ef15-4ce6-a1a8-1177dcd58f60": {
+      "ProjectGuid": "4bede18e-ef15-4ce6-a1a8-1177dcd58f60",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 11
+    },
+    "d19b358a-3422-44e5-8acf-c7997f55783e": {
+      "ProjectGuid": "d19b358a-3422-44e5-8acf-c7997f55783e",
+      "DisplayName": "PrivateClinic.WebApi.Tests",
+      "ColorIndex": 12
+    },
+    "a292f1fd-f1d1-4218-9fae-acdc799217aa": {
+      "ProjectGuid": "a292f1fd-f1d1-4218-9fae-acdc799217aa",
+      "DisplayName": "PrivateClinic.Desktop",
+      "ColorIndex": 13
+    },
+    "4404a48d-196a-438f-87f9-1f195fd26164": {
+      "ProjectGuid": "4404a48d-196a-438f-87f9-1f195fd26164",
+      "DisplayName": "PrivateClinic.WebApi",
+      "ColorIndex": 14
+    },
+    "5ef88a7b-1515-4e59-84e9-98596f75c5ec": {
+      "ProjectGuid": "5ef88a7b-1515-4e59-84e9-98596f75c5ec",
+      "DisplayName": "PrivateClinic.WebApi.Tests",
+      "ColorIndex": 15
+    }
+  },
+  "NextColorIndex": 0
+}

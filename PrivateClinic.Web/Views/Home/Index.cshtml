@@ -1,0 +1,101 @@
+﻿@using System;
+@using System.Text;
+@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<PrivateClinic.Persistence.Doctor>
+
+@{
+    ViewData["Title"] = "Főoldal";
+}
+
+@{
+    Func<SpecializationType, String> SpecTypeConverter = specialization =>
+    {
+       
+        switch (specialization)
+        {
+            case SpecializationType.Toxicology: return "Toxikológia"; 
+            case SpecializationType.Dermatology: return "Bőrgyógyászat";
+            case SpecializationType.Surgery: return "Sebészet";
+            default: return "?";
+        }
+    }; 
+}
+
+@{
+    Func<IEnumerable<Specialization>, String> SpecializationConverter = specializations =>
+    {
+        StringBuilder sb = new StringBuilder("", 50);
+        foreach (var specs in specializations)
+        {
+            sb.Append(SpecTypeConverter(specs.SpecName));
+            sb.Append(" ");
+        }
+        return sb.ToString(); 
+    }; 
+}
+
+
+@inject SignInManager<Patient> SignInManager
+@inject UserManager<Patient> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+
+
+<h4>Orvosok listája</h4>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Orvos neve (Kattins a foglaláshoz)
+            </th>
+            <th>
+               Orvos szakterületei
+            </th>
+            <th>
+               Orvos képe
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var item in Model) {
+         <tr>
+            <td>
+               <a asp-controller="Calendar" asp-action="Index" asp-route-doctorId="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a> 
+            </td>
+             <td>
+               @SpecializationConverter(item.Specializations)
+             </td>
+             <td>
+                @if(item.Image != null)
+                {
+                  <img src="@Url.Action("DisplayImage", "Home", new { id = item.Id })" class="item"/>
+                }
+            </td>
+        </tr>
+         }
+
+
+
+
+        
+    </tbody>
+</table>
+
+<br />
+
+<h6>Foglalás szakterületekkel:</h6>
+<a asp-controller="Calendar" asp-action="BookWithSpecialization" asp-route-specializationId="1">Sebészet</a><br/>
+<a asp-controller="Calendar" asp-action="BookWithSpecialization" asp-route-specializationId="2">Bőrgyógyászat</a> <br/>
+<a asp-controller="Calendar" asp-action="BookWithSpecialization" asp-route-specializationId="3">Toxicológia</a>  <br/>
+
+
+
+} 
+else
+{
+    <h4>Kérjük regisztráljon illetve jelentkezzen be a honlap funkcióinak ígénybe vételéhez</h4>
+}

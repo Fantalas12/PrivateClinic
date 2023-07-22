@@ -1,0 +1,39 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+img.item {
+    max-width: 100px;
+    height: 100px;
+}
+
+.past {
+    background-color: darkgrey;
+}
+
+.available {
+    background-color: green;
+}
+
+.booked-by-user {
+    background-color: yellow;
+}
+
+.booked {
+    background-color: red;
+}

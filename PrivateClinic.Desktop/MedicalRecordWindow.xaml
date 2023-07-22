@@ -1,0 +1,55 @@
+﻿<Window x:Class="PrivateClinic.Desktop.MedicalRecordWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:PrivateClinic.Desktop"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <i:InvokeCommandAction Command="{Binding RefreshDataCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="6*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0">
+                <Label Content="{Binding SelectedMedicalRecord.SumPrice}"/>
+            </GroupBox>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBox Width="200"  Height="21" Margin="5" Text="{Binding NewTreatmentDescription, UpdateSourceTrigger=PropertyChanged}" />
+                <Button Width="85"  Height="21" Margin="5" Content="Új kezelés" Command="{Binding AddTreatmentCommand}" />
+                <Button Width="85"  Height="21" Margin="5" Content="Kezelés törlése" Command="{Binding DeleteTreatmentCommand}" />
+                <TextBox Width="200"  Height="21" Margin="5" Text="{Binding NewTreatmentCost, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Width="120"  Height="21" Margin="5" Content="Kórlap véglegesítése" Command="{Binding EndMedicalRecordEditCommand}" />
+            </StackPanel>
+            <GroupBox Grid.Row="2">
+                <GroupBox.Header>
+                    <Label Content="Kezelések:" />
+                </GroupBox.Header>
+                <DataGrid ItemsSource="{Binding Treatments}"
+                      VerticalContentAlignment="Stretch"  IsReadOnly="True"
+                      AutoGenerateColumns="False"
+                      SelectedItem="{Binding SelectedTreatment}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction
+                                Command="{Binding SelectTreatmentCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Kezelés leírása"  Binding="{Binding Description}" Width="*" />
+                        <DataGridTextColumn Header="Kezelés költsége" Binding="{Binding Price}" Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+        </Grid>
+    </DockPanel>
+</Window>

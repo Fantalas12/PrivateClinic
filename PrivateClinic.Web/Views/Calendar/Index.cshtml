@@ -1,0 +1,205 @@
+﻿@using System.Security.Claims;
+@using System;
+@using System.Text;
+@using Microsoft.AspNetCore.Identity;
+
+@model CalendarViewModel
+
+
+@{
+    var date = Model.Date;
+    //if (date.DayOfWeek == DayOfWeek.Saturday) date.AddDays(2);
+    //if (date.DayOfWeek == DayOfWeek.Sunday) date.AddDays(1);
+    date = date.AddDays((Model.pageid) * 7);
+    var firstDayOfWeek = date.StartOfWeek(DayOfWeek.Monday);
+    var daysOfWeek = Enumerable.Range(0, 5).Select(d => firstDayOfWeek.AddDays(d));
+
+
+  
+}
+    @{
+        Func<SpecializationType, String> SpecTypeConverter = specialization =>
+        {
+       
+            switch (specialization)
+            {
+                case SpecializationType.Toxicology: return "Toxikológia"; 
+                case SpecializationType.Dermatology: return "Bőrgyógyászat";
+                case SpecializationType.Surgery: return "Sebészet";
+                default: return "?";
+            }
+        }; 
+    }
+
+@{
+    Func<IEnumerable<Specialization>, String> SpecializationConverter = specializations =>
+    {
+        StringBuilder sb = new StringBuilder("", 50);
+        foreach (var specs in specializations)
+        {
+            sb.Append(SpecTypeConverter(specs.SpecName));
+            sb.Append(" ");
+        }
+        return sb.ToString();
+    };
+}
+
+@inject SignInManager<Patient> SignInManager
+@inject UserManager<Patient> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+if (Model.SelectedDoctor != null) {
+
+
+ <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Orvos neve
+                </th>
+                <th>
+                    Orvos szakterületei
+                </th>
+                <th>
+                    Orvos képe
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.SelectedDoctor.Name)
+                </td>
+                <td>
+                    @SpecializationConverter(Model.SelectedDoctor.Specializations)
+                </td>
+                <td>
+                    @if (Model.SelectedDoctor.Image != null)
+                    {
+                        <img src="@Url.Action("DisplayImage", "Home", new { id = Model.SelectedDoctor.Id })" class="item"/>
+                    }
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+        <br/>
+
+    }
+
+
+
+<table>
+    <tr>
+        <th>
+            Óra
+        </th>
+        @foreach (var day in daysOfWeek)
+        {
+            <th>@day.DayOfWeek  <br />@day.Year.@day.Month.@day.Day </th>
+
+        }
+    </tr>
+    @for (int hour = 9; hour <= 17; hour++)
+    {
+        <tr>
+        <td>
+            @hour
+        </td>
+            @foreach (var day in daysOfWeek)
+            {
+                var booking = Model.Bookings
+                    .FirstOrDefault(b => b.DateTime.Date == day.Date && b.DateTime.Hour == hour);
+
+                var timeSlot = new DateTime(day.Year, day.Month, day.Day, hour, 0, 0);
+
+                string cssClass;
+                string buttonLabel;
+                string tooltip = null!;
+
+                if (timeSlot < DateTime.Now)
+                {
+                    cssClass = "past";
+                    buttonLabel = "Múlt időpont";
+                }
+                else if (booking == null)
+                {
+                    cssClass = "available";
+                    buttonLabel = "Lefoglal";
+                }
+                else if (booking.PatientID == User.FindFirstValue(ClaimTypes.NameIdentifier))  // booking.PatientID = User.Identity.Name assuming you're using the username as the PatientID
+                {
+                    cssClass = "booked-by-user";
+                    buttonLabel = "Töröl";
+                    tooltip = $"Ön által lefoglalva, Doktor: {booking.Doctor.Name}, Megjegyzés: {booking.Comment}";
+                }
+                else
+                {
+                    cssClass = "booked";
+                    buttonLabel = "Lefoglalt";
+                }
+
+                <td class="@cssClass" title="@tooltip">
+                    @if (timeSlot >= DateTime.Now && booking == null)
+                    {
+                        @using (Html.BeginForm("Book", "Calendar", FormMethod.Post))
+                        {
+                            @Html.Hidden("DateTime", timeSlot)
+                            if (Model.SelectedDoctor != null) {
+                                @Html.Hidden("DoctorId", Model.SelectedDoctor.Id)
+                            }
+                            if (Model.SelectedSpecializationId != 0) {
+                                @Html.Hidden("SpecializationId", Model.SelectedSpecializationId)
+                            } 
+                            
+                            <div class="control-group">
+                            @Html.LabelFor(m => m.Comment)
+                            <div class="controls">
+                            @Html.EditorFor(m => m.Comment)
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Comment)
+                            </div>
+                            
+                            /*
+                            <div class="form-group">
+                            <label asp-for="Comment" class="control-label"></label>
+                            <input asp-for="Comment" class="form-control" />
+                            <span asp-validation-for="Comment" class="text-danger"></span>
+                            </div> */
+                            <input type="submit" value="@buttonLabel"/>
+                            }
+                        } else if (timeSlot >= DateTime.Now && booking!= null && booking.PatientID == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                        {       
+
+                            @using (Html.BeginForm("Delete", "Calendar", FormMethod.Post))
+                            {
+                                @Html.Hidden("id", booking.Id)
+                                <input type="submit" value="@buttonLabel"/>
+                            }
+                        }
+                        else
+                    {
+                        @buttonLabel
+                    }
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+
+ <a asp-controller="Calendar" asp-action="Index" asp-route-pageid="@(Model.pageid - 1)" asp-route-doctorId="@Model.SelectedDoctor.Id">Előző hét</a>
+<a asp-controller="Calendar" asp-action="Index" asp-route-pageid="@(Model.pageid + 1)" asp-route-doctorId="@Model.SelectedDoctor.Id">Következő hét</a> 
+   
+
+<br/>
+
+<a asp-controller="Home" asp-action="Index">Vissza az orvoslistához</a>
+
+}
+else
+{
+    <h4>Kérjük regisztráljon illetve jelentkezzen be a honlap funkcióinak ígénybe vételéhez</h4>
+}
